@@ -22,14 +22,14 @@ git clone https://github.com/usuario/inventario-estoque.git
 
 ```
 
-## Links Importantes
+## Entrega 1
 - Link protótipo Lo-fi: https://www.figma.com/design/WvTRqMYeRcnLiVc6AZAqCj/POO?node-id=0-1&p=f
 - Link user stories: https://docs.google.com/document/d/1eIBfzEioe1KLo6Cd_hMLFg7q7fa9SG9rzY0dOnOhOoU/edit?tab=t.0
 
 ## Autores
-- Coraline Rodrigues de Oliveira 
 - Arthur Tavares Porto
+- Caio Furtado de Miranda Carvalho
+- Coraline Rodrigues de Oliveira
 - Jamilla Soares Lobo
 - Lucas Deodato
 - Luis Henrique Facunde da Silva
-- Caio Furtado de Miranda Carvalho
