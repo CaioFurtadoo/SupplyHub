@@ -25,6 +25,7 @@ git clone https://github.com/usuario/inventario-estoque.git
 ## Entrega 1
 - Link protótipo Lo-fi: https://www.figma.com/design/WvTRqMYeRcnLiVc6AZAqCj/POO?node-id=0-1&p=f
 - Link user stories: https://trello.com/b/jDt7Iy8l/supply-hub
+- Link do screencast: https://youtu.be/Tl1fqRsO7uk?si=pEOzHgj5rj6XKEs5
 
 ## Autores
 - Arthur Tavares Porto
