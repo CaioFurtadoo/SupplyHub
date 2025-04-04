@@ -77,3 +77,23 @@ export const NavLinkSt = styled(NavLink)`
     align-items: center;
     flex: 1;
 `;
+
+export const DivRemember = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 4px;
+`;
+
+export const RememberLink = styled(Link)`
+    color: #001d6c;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 300ms;
+`;
+
+export const MarginCheckbox = styled.div`
+    margin-top: 24px;
+    margin-bottom: 4px;
+`;

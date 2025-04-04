@@ -1,11 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Check } from "lucide-react";
 
 const CheckboxContainer = styled.label`
   display: flex;
-  margin-top: 24px;
-  margin-bottom: 4px;
   align-items: center;
   cursor: pointer;
   font-size: 14px;
@@ -36,20 +33,17 @@ const StyledCheckbox = styled.div`
     `}
 `;
 
-export const CheckboxAut = ({ label }) => {
-    
-  const [checked, setChecked] = useState(false);
-
+export const CheckboxAut = ({ label, checked, onChange }) => {
   return (
     <CheckboxContainer>
       <HiddenCheckbox
         checked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={onChange}
       />
-      <StyledCheckbox checked={checked}>
+      <StyledCheckbox checked={checked} onClick={onChange}>
         {checked && <Check size={14} color="white" />}
       </StyledCheckbox>
       {label}
     </CheckboxContainer>
   );
-}
+};
