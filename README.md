@@ -9,11 +9,10 @@ O sistema foi desenvolvido para a disciplina de `Programação Orientada a Objet
 - Interface Amigável: Uma interface simples e eficaz para que os usuários possam realizar as operações de forma intuitiva.
 
 ## Tecnologias Utilizadas
-- Linguagem de Programação: Java
-- Framework: Spring Boot (para a construção de APIs)
-- Banco de Dados: MySQL/PostgreSQL (em análise)
-- Frontend: React.js ou outro framework moderno (em análise)
-- Ferramentas: Figma para protótipos e design de UI/UX
+- Front-end: React.js (HTML, CSS, JavaScript)
+- Back-end: Java (Spring Boot)
+- Banco de Dados: MySQL/PostgreSQL
+- Ferramentas: Figma (protótipos e UI/UX), GitHub Projects (quadro Kanban)
 
 ## Como Executar o Projeto
 - Clone o repositório:
