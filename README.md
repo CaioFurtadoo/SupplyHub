@@ -28,8 +28,8 @@ git clone https://github.com/usuario/inventario-estoque.git
 - Link do screencast: https://youtu.be/Tl1fqRsO7uk?si=pEOzHgj5rj6XKEs5
 
 ## Entrega 2
+- Link do screencast do front-endÇ https://www.youtube.com/watch?v=ceoorSjFFMY
 - Link do screencast do back-end: https://www.youtube.com/watch?v=I-Y8nAB1nog
--
 - Link do diagrama de classes: https://drive.google.com/file/d/1jmClsM2XlNJSDeVHoa5Od0q7C01Gt7XH/view?usp=sharing
 
 ## Autores
