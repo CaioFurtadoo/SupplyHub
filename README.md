@@ -27,6 +27,9 @@ git clone https://github.com/usuario/inventario-estoque.git
 - Link user stories: https://trello.com/b/jDt7Iy8l/supply-hub
 - Link do screencast: https://youtu.be/Tl1fqRsO7uk?si=pEOzHgj5rj6XKEs5
 
+## Entrega 2
+- Link do screencast do back-end: https://www.youtube.com/watch?v=zwprq4XgGbU
+
 ## Autores
 - Arthur Tavares Porto
 - Caio Furtado de Miranda Carvalho
