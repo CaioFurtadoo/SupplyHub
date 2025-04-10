@@ -17,7 +17,7 @@ O sistema foi desenvolvido para a disciplina de `Programação Orientada a Objet
 ## Como Executar o Projeto
 - Clone o repositório:
 ```
-git clone https://github.com/usuario/inventario-estoque.git
+git clone https://github.com/CaioFurtadoo/SupplyHub.git
 
 ```
 
