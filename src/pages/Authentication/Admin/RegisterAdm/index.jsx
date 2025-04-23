@@ -34,11 +34,7 @@ export const RegisterAdm = () => {
                 <InputAut type="password" title="Senha" placeholder="Digite sua senha" name="senha" onChange={handleChange} value={formData.senha}/>
                 <SubmitButton title="Avançar"/>
             </Styled.AutForm>
-            <Styled.NavContainerLink>
-                <Styled.NavLinkSt to="/">Funcionario</Styled.NavLinkSt>
-                <Styled.NavLinkSt to="/adm">Admin</Styled.NavLinkSt>
-            </Styled.NavContainerLink>
-            <Styled.PageLink to="/login">Já possui conta?</Styled.PageLink>
+            <Styled.PageLink to="/">Já possui conta?</Styled.PageLink>
         </Styled.AutDiv>
     );
 };

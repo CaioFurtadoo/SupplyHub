@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Register } from './pages/Authentication/Funcionario/Register/'
 import { Login } from './pages/Authentication/Login'
 import { Authentication } from './pages/Authentication/Layout/Authentication'
 import { RegisterAdm } from './pages/Authentication/Admin/RegisterAdm'
@@ -12,10 +11,14 @@ export const App = () => {
       <Routes>
 
         <Route element={<Authentication/>}>
-          <Route index element={<Register/>}></Route>
           <Route path='/adm' element={<RegisterAdm/> }></Route>
           <Route path="adm/submit" element={<RegisterAdm2/>}></Route>
-          <Route path=":login" element={<Login/>}></Route>
+          <Route index element={<Login/>}></Route>
+        </Route>
+
+        <Route>
+          <Route path='/dashboard'></Route>
+          <Route path='dashboard/gestor'></Route>
         </Route>
 
       </Routes>

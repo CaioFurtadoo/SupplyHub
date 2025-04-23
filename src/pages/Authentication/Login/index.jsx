@@ -51,7 +51,7 @@ export const Login = () => {
                 </Styled.DivRemember>
                 <SubmitButton title="Logar-se" />
             </Styled.AutForm>
-            <Styled.PageLink to="/">Sem conta ainda? Cadastre-se!</Styled.PageLink>
+            <Styled.PageLink to="/adm">Sem empresa ainda? Cadastre-se!</Styled.PageLink>
         </Styled.AutDiv>
     );
 };
