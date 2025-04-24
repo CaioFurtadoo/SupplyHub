@@ -4,4 +4,5 @@
     font-family: "poppins", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    box-sizing: border-box;
 }

@@ -25,7 +25,7 @@ export const RegisterAdm2 = () => {
         e.preventDefault();
         console.log("Dados completos do admin:", formData);
 
-        navigate("/");
+        navigate("/produtos");
     };
 
     return (

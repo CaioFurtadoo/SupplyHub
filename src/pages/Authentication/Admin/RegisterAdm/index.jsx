@@ -19,7 +19,7 @@ export const RegisterAdm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate("/adm/submit", { state: formData }); // envia dados para a próxima rota
+        navigate("/adm/submit", { state: formData });
     };
 
     return (

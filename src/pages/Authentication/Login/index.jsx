@@ -1,10 +1,12 @@
 import { useState } from "react";
 import * as Styled from "../../../GlobalStyles/Authetication";
 import { CheckboxAut } from "../../../components/CheckboxAut";
+import { useLocation, useNavigate } from "react-router-dom";
 import { InputAut } from "../../../components/InputAut";
 import { SubmitButton } from "../../../components/SubmitButton";
 
 export const Login = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         senha: "",
@@ -23,6 +25,7 @@ export const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Dados de login:", formData);
+        navigate("/produtos");
     };
 
     return (
