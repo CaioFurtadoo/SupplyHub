@@ -250,4 +250,5 @@ export const NumberLiSideBar = styled.div`
 export const Content = styled.main`
     margin-top: 150px;
     padding: 24px;
+    height: 100%;
 `;

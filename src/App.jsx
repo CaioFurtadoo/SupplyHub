@@ -6,6 +6,7 @@ import { RegisterAdm2 } from './pages/Authentication/Admin/RegisterAdm2'
 import { Dashboard } from './pages/Dashboard/Layout/Dashboard'
 import { AdminPage } from './pages/Dashboard/AdminPage'
 import { CreateProduct } from './pages/Dashboard/CreateProduct'
+import { ExportProduct } from './pages/Dashboard/ExportProduct'
 
 export const App = () => {
 
@@ -21,6 +22,7 @@ export const App = () => {
 
         <Route element={<Dashboard/>}>
           <Route path='/produtos' element={<CreateProduct/>}></Route>
+          <Route path='produtos/expedir' element={<ExportProduct/>}></Route>
           <Route path='/gestor' element={<AdminPage/>}></Route>
         </Route>
 

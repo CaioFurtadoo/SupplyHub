@@ -7,15 +7,15 @@ import { useState } from "react";
 import { CheckboxAut } from "../../../components/CheckboxAut";
 
 
-export const CreateProduct = () => {
+export const ExportProduct = () => {
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        recebidor: "",
+        expedidor: "",
         cpf: "",
-        produto: "",
-        fabricação: "",
-        vencimento: "",
+        destino: "",
+        registro: "",
+        expedição: "",
         termos: false,
     });
 
@@ -29,8 +29,8 @@ export const CreateProduct = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Dados do recebimento:", formData);
-        navigate("expedir");
+        console.log("Dados do expedimento:", formData);
+        navigate("/produtos");
     };
 
     return(
@@ -38,19 +38,19 @@ export const CreateProduct = () => {
             <img src={picture} alt="picture box image" />
             <Styled.GeneralDivCreate>
                 <Styled.TitleDiv>
-                    <h1>Produto Recebido</h1>
-                    <p>Informações gerais do produto recebido</p>
+                    <h1>Lote Expedido</h1>
+                    <p>Informações gerais do lote expedido</p>
                 </Styled.TitleDiv>
                 <Styled.CreateForm onSubmit={handleSubmit}>
                     <Styled.CreateDoubleInputDiv>
-                        <InputAut type="text" title="Nome do recebidor" placeholder="Digite o nome do recebidor" name="recebidor" onChange={handleChange} value={formData.recebidor}/>
-                        <InputAut type="text" title="CPF / RG" placeholder="Digite o CPF / RG do recebidor" name="cpf" onChange={handleChange} value={formData.cpf}/>
+                        <InputAut type="text" title="Nome do Expedidor" placeholder="Digite o nome do expedidor" name="expedidor" onChange={handleChange} value={formData.expedidor}/>
+                        <InputAut type="text" title="CPF / RG" placeholder="Digite o CPF / RG do expedidor" name="cpf" onChange={handleChange} value={formData.cpf}/>
                     </Styled.CreateDoubleInputDiv>
-                    <InputAut type="text" title="Titulo do produto" placeholder="Digite o titulo do produto" name="produto" onChange={handleChange} value={formData.produto}/>
-                    <InputAut type="text" title="Data de fabricação" placeholder="Digite a data de fabricação" name="fabricação" onChange={handleChange} value={formData.fabricação}/>
-                    <InputAut type="text" title="Data de vencimento" placeholder="Digite a data de vencimento" name="vencimento" onChange={handleChange} value={formData.vencimento}/>                      
+                    <InputAut type="text" title="Destino de expedição" placeholder="Digite o destino de expedição" name="destino" onChange={handleChange} value={formData.destino}/>
+                    <InputAut type="text" title="ID de registro do lote" placeholder="Digite o n de registro do lote" name="registro" onChange={handleChange} value={formData.registro}/>
+                    <InputAut type="text" title="Data de expedição" placeholder="Digite a data de expedição" name="expedição" onChange={handleChange} value={formData.expedição}/>                      
                     <CheckboxAut label="Concordo com os termos" checked={formData.termos} onChange={handleCheckbox} />   
-                    <SubmitButton title="Receber"/>
+                    <SubmitButton title="Expedir"/>
                 </Styled.CreateForm>
             </Styled.GeneralDivCreate>
         </Styled.GeneralContainerCreate>
