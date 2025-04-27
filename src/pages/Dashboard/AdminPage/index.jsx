@@ -78,6 +78,7 @@ export const AdminPage = () => {
                     htmlfor="senha"
                     name="senha"
                     title="Senha"
+                    placeholder="Digite a senha do funcionário"
                     type="text"
                     value={formData.senha}
                     onChange={handleChange}

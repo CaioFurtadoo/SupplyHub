@@ -173,6 +173,7 @@ export const Header = styled.header`
     padding: 24px;
     flex-direction: column;
     gap: 24px;
+    background-color: #f2f4f8;
 
     h1 {
         color: #21272a;

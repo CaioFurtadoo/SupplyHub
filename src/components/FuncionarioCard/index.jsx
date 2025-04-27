@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const FuncionarioCardContainer = styled.div`
-  margin: 1rem 0;
-  padding: 1rem;
+  margin: 1.2rem 0;
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
@@ -16,8 +16,8 @@ export const FuncionarioCardContainer = styled.div`
 
 export const RemoverButton = styled.button`
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 30px;
+  right: 30px;
   background: none;
   border: none;
   color: black;
@@ -30,13 +30,22 @@ export const RemoverButton = styled.button`
   }
 `;
 
+export const DivInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
+
 export const FuncionarioCard = ({ funcionario, onRemover }) => {
   return (
     <FuncionarioCardContainer>
-      <p><strong>Nome:</strong> {funcionario.nome}</p>
-      <p><strong>CPF:</strong> {funcionario.cpf}</p>
-      <p><strong>Email:</strong> {funcionario.email}</p>
-      <p><strong>Senha:</strong> {funcionario.senha}</p>
+      <DivInfo>
+        <p><strong>Nome:</strong> {funcionario.nome}</p>
+        <p><strong>CPF:</strong> {funcionario.cpf}</p>
+        <p><strong>Email:</strong> {funcionario.email}</p>
+        <p><strong>Senha:</strong> {funcionario.senha}</p>
+      </DivInfo>
+
       <RemoverButton onClick={() => onRemover(funcionario.id)}>
         remover
       </RemoverButton>
