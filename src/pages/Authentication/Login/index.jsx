@@ -4,12 +4,13 @@ import { CheckboxAut } from "../../../components/CheckboxAut";
 import { useLocation, useNavigate } from "react-router-dom";
 import { InputAut } from "../../../components/InputAut";
 import { SubmitButton } from "../../../components/SubmitButton";
+import axios from "axios";
 
 export const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
-        senha: "",
+        password: "",
         lembrar: false,
     });
 
@@ -22,11 +23,24 @@ export const Login = () => {
         setFormData((prev) => ({ ...prev, lembrar: !prev.lembrar }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Dados de login:", formData);
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        const response = await axios.post("http://localhost:8080/api/auth/login", {
+            email: formData.email,
+            password: formData.password
+        });
+
+        const token = response.data.token; // verifique se o backend retorna isso
+        localStorage.setItem("token", token);
+
+        console.log("Login bem-sucedido:", token);
         navigate("/produtos");
-    };
+    } catch (error) {
+        console.error("Erro no login:", error.response?.data || error.message);
+        alert("Credenciais inválidas.");
+    }
+};
 
     return (
         <Styled.AutDiv>
@@ -44,8 +58,8 @@ export const Login = () => {
                     type="password"
                     title="Senha"
                     placeholder="Digite sua senha"
-                    name="senha"
-                    value={formData.senha}
+                    name="password"
+                    value={formData.password}
                     onChange={handleChange}
                 />
                 <Styled.DivRemember>

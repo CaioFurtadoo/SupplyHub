@@ -3,13 +3,14 @@ import { InputAut } from "../../../components/InputAut";
 import { SubmitButton } from "../../../components/SubmitButton";
 import { FuncionarioCard } from "../../../components/FuncionarioCard";
 import * as Styled from "./Admin";
+import axios from "axios";
 
 export const AdminPage = () => {
     const [formData, setFormData] = useState({
-        nome: "",
+        username: "",
         cpf: "",
         email: "",
-        senha: ""
+        password: ""
     });
 
     const [funcionarios, setFuncionarios] = useState([]);
@@ -22,18 +23,22 @@ export const AdminPage = () => {
         }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (formData.nome && formData.cpf && formData.email && formData.senha) {
-            setFuncionarios([...funcionarios, { ...formData, id: Date.now() }]);
-            setFormData({
-                nome: "",
-                cpf: "",
-                email: "",
-                senha: ""
-            });
-        }
-    };
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        const token = localStorage.getItem("token");
+        const response = await axios.post("http://localhost:8080/employees", formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        setFuncionarios([...funcionarios, response.data]);
+        setFormData({ username: "", cpf: "", email: "", password: "" });
+    } catch (error) {
+        console.error("Erro ao criar funcionário:", error.response?.data || error.message);
+        alert("Erro ao criar funcionário.");
+    }
+};
 
     const removerFuncionario = (id) => {
         setFuncionarios(funcionarios.filter(func => func.id !== id));
@@ -45,12 +50,12 @@ export const AdminPage = () => {
             <Styled.Form onSubmit={handleSubmit}>
                 <Styled.InfoFuncionario>
                     <InputAut
-                        htmlfor="nome"
-                        name="nome"
+                        htmlfor="username"
+                        name="username"
                         title="Nome do funcionário"
                         placeholder="Digite o nome do funcionário"
                         type="text"
-                        value={formData.nome}
+                        value={formData.username}
                         onChange={handleChange}
                     />
                    <InputAut
@@ -75,12 +80,12 @@ export const AdminPage = () => {
                     onChange={handleChange}
                 />
                 <InputAut
-                    htmlfor="senha"
-                    name="senha"
+                    htmlfor="password"
+                    name="password"
                     title="Senha"
                     placeholder="Digite a senha do funcionário"
                     type="text"
-                    value={formData.senha}
+                    value={formData.password}
                     onChange={handleChange}
                 />
 
