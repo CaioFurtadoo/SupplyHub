@@ -34,6 +34,8 @@ git clone https://github.com/CaioFurtadoo/SupplyHub.git
 - Link do back-end: https://github.com/jamillalobo/back-supplyhub
 - Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
 
+## Entrega 3
+- Link do screencast do front-end: https://www.youtube.com/watch?v=xArOfddWEb0
 
 ## Autores
 - Arthur Tavares Porto
