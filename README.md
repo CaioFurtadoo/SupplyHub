@@ -35,10 +35,11 @@ git clone https://github.com/CaioFurtadoo/SupplyHub.git
 - Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
 
 ## Entrega 3
-- Link do screencast do front-end integrado: https://www.youtube.com/watch?v=xArOfddWEb
+- Link do screencast do front-end integrado: https://www.youtube.com/watch?v=xArOfddWEb0
+- Link do screencast do back-end: https://youtu.be/gjUyPD8sUzc
 - Link do diagrama de classes: https://drive.google.com/file/d/11ZVm8GIpT7hBT92Or0zDX53AnfT9N48x/view?usp=sharing
 - Link user stories: https://github.com/users/LuisFacunde/projects/1
-- Link do back-end: https://github.com/jamillalobo/back-supplyhub
+- Link do back-end (rodar a branch 'back'): https://github.com/jamillalobo/back-supplyhub/tree/feat/back
 - Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
 
 ## Autores
@@ -46,5 +47,5 @@ git clone https://github.com/CaioFurtadoo/SupplyHub.git
 - Caio Furtado de Miranda Carvalho
 - Coraline Rodrigues de Oliveira
 - Jamilla Soares Lobo
-- Lucas Antônio Deodato
+- Lucas Antônio Cunha Deodato da Silva
 - Luis Henrique Facunde da Silva
