@@ -49,8 +49,8 @@ export const Dashboard = () => {
                 <Styled.Header>
                     <h1>Dashboard</h1>
                     <Styled.UlHeader>
-                        <li>Produtos Expedidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li>
-                        <li>Produtos recebidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li>
+                    <Link className="link" to="produtos/expedidos"><li>Produtos Expedidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li></Link>
+                    <Link className="link" to="produtos"><li>Produtos recebidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li></Link>
                         <li>Alertas</li>
                         <li><img src={dots} alt="" /></li>
                     </Styled.UlHeader>

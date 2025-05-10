@@ -181,6 +181,16 @@ export const Header = styled.header`
         font-size: 42px;
         letter-spacing: -1px;
     }
+    .link {
+        text-decoration: none;
+        color: #21272a;
+    }
+
+    .link.active {
+        color: #001d6c;
+        border-bottom: 2px solid #001d6c;
+        cursor: pointer;
+    }
 `;
 
 export const UlHeader = styled.ul`

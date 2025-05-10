@@ -6,6 +6,8 @@ import { Dashboard } from './pages/Dashboard/Layout/Dashboard'
 import { AdminPage } from './pages/Dashboard/AdminPage'
 import { CreateProduct } from './pages/Dashboard/CreateProduct'
 import { ExportProduct } from './pages/Dashboard/ExportProduct'
+import { RecebidosPage } from './pages/Dashboard/RecebidosPage'
+import { ExpedidosPage } from './pages/Dashboard/ExpedidosPage'
 
 export const App = () => {
 
@@ -19,7 +21,9 @@ export const App = () => {
         </Route>
 
         <Route element={<Dashboard/>}>
-          <Route path='/produtos' element={<CreateProduct/>}></Route>
+        <Route path='/produtos' element={<RecebidosPage/>}></Route>
+          <Route path='produtos/expedidos' element={<ExpedidosPage/>}></Route>
+          <Route path='produtos/receber' element={<CreateProduct/>}></Route>
           <Route path='produtos/expedir' element={<ExportProduct/>}></Route>
           <Route path='/gestor' element={<AdminPage/>}></Route>
         </Route>
