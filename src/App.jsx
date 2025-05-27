@@ -8,28 +8,37 @@ import { CreateProduct } from './pages/Dashboard/CreateProduct'
 import { ExportProduct } from './pages/Dashboard/ExportProduct'
 import { RecebidosPage } from './pages/Dashboard/RecebidosPage'
 import { ExpedidosPage } from './pages/Dashboard/ExpedidosPage'
+import { AuthProvider } from './contexts/AuthContext';
+import { ManagerRoute } from './components/ManagerRoute'
+import { ProtectedRoute } from './components/ProtectedRoute'
 
 export const App = () => {
-
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Acesso livre */}
+          <Route element={<Authentication />}>
+            <Route path='/adm' element={<RegisterAdm />} />
+            <Route index element={<Login />} />
+          </Route>
 
-        <Route element={<Authentication/>}>
-          <Route path='/adm' element={<RegisterAdm/> }></Route>
-          <Route index element={<Login/>}></Route>
-        </Route>
+          {/* Protegido: qualquer usuário logado */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Dashboard />}>
+              <Route path='/produtos' element={<RecebidosPage />} />
+              <Route path='produtos/expedidos' element={<ExpedidosPage />} />
+              <Route path='produtos/receber' element={<CreateProduct />} />
+              <Route path='produtos/expedir' element={<ExportProduct />} />
 
-        <Route element={<Dashboard/>}>
-        <Route path='/produtos' element={<RecebidosPage/>}></Route>
-          <Route path='produtos/expedidos' element={<ExpedidosPage/>}></Route>
-          <Route path='produtos/receber' element={<CreateProduct/>}></Route>
-          <Route path='produtos/expedir' element={<ExportProduct/>}></Route>
-          <Route path='/gestor' element={<AdminPage/>}></Route>
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
+              {/* Protegido: apenas MANAGER */}
+              <Route element={<ManagerRoute />}>
+                <Route path='/gestor' element={<AdminPage />} />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+};

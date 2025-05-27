@@ -26,13 +26,14 @@ export const Login = () => {
 const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        const response = await axios.post("http://localhost:8080/api/auth/login", {
+        const response = await axios.post("http://54.209.45.121/api/auth/login", {
             email: formData.email,
             password: formData.password
         });
 
-        const token = response.data.token; // verifique se o backend retorna isso
+        const token = response.data.token; 
         localStorage.setItem("token", token);
+        window.location.href = "/produtos";
 
         console.log("Login bem-sucedido:", token);
         navigate("/produtos");

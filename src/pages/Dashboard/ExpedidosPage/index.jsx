@@ -50,34 +50,40 @@ export const ExpedidosPage = () => {
   const gridRef = useRef();
   const navigate = useNavigate();
   
-  // Dados de exemplo (os mesmos da RecebidosPage)
-  const exampleProducts = [
-    { id: 1, prod: "banana", func: "João Silva", rec: "01/01/2025", fab: "01/12/2024", val: "01/06/2025", peso: "10.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 2, prod: "maçã", func: "Maria Souza", rec: "02/01/2025", fab: "15/12/2024", val: "10/06/2025", peso: "11.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 11, prod: "feijão", func: "Gustavo Mendes", rec: "11/01/2025", fab: "15/11/2024", val: "15/11/2026", peso: "2.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 12, prod: "óleo", func: "Camila Freitas", rec: "12/01/2025", fab: "01/10/2024", val: "01/10/2025", peso: "0.90kg", tpPeso: "Variável", status: "expedido" },
-    { id: 13, prod: "açúcar", func: "Lucas Barbosa", rec: "13/01/2025", fab: "01/09/2024", val: "01/09/2026", peso: "5.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 14, prod: "sal", func: "Amanda Castro", rec: "14/01/2025", fab: "01/08/2024", val: "01/08/2027", peso: "1.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 15, prod: "farinha", func: "Roberto Dias", rec: "15/01/2025", fab: "01/07/2024", val: "01/07/2026", peso: "2.50kg", tpPeso: "Variável", status: "expedido" },
-  ];
-
   const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Simulando a chamada ao backend
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      // Em uma aplicação real, seria: const response = await axios.get('/api/products');
-      // Simulando delay de rede
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setAllData(exampleProducts);
+      const token = localStorage.getItem("token");
+      const response = await axios.get("http://54.209.45.121/products/dispatched", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      const dispatchedData = response.data.map((item, index) => ({
+        id: index + 1,
+        prod: item.productName,
+        func: item.employee,
+        fab: new Date(item.fabricationDate).toISOString().split('T')[0],
+        val: new Date(item.expiredDate).toISOString().split('T')[0],
+        rec: new Date(item.dispatchedDate).toISOString().split('T')[0],
+        peso: `${item.peso.toFixed(2)}kg`,
+        tpPeso: item.typePeso === "fixo" ? "Fixo" : "Variável",
+        status: "expedido",
+      }));
+  
+      setAllData(dispatchedData);
     } catch (error) {
-      console.error('Erro ao buscar produtos:', error);
+      console.error('Erro ao buscar produtos recebidos:', error);
+      alert('Erro ao carregar produtos recebidos.');
     } finally {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchProducts();
@@ -85,8 +91,8 @@ export const ExpedidosPage = () => {
 
   const [colDefs] = useState([
     { field: "prod", headerName: "Produto", sortable: true, filter: true, },
-    { field: "func", headerName: "Recebidor", sortable: true, filter: true },
-    { field: "rec", headerName: "Data de recebimento", sortable: true, filter: true },
+    { field: "func", headerName: "Expedidor", sortable: true, filter: true },
+    { field: "rec", headerName: "Data de expedimento", sortable: true, filter: true },
     { field: "fab", headerName: "Data de fabricação", sortable: true, filter: true },
     { field: "val", headerName: "Data de validade", sortable: true, filter: true },
     { field: "peso", headerName: "Peso", sortable: true, filter: true },

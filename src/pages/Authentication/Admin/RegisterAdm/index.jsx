@@ -22,7 +22,7 @@ export const RegisterAdm = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/register", formData, {
+            const response = await axios.post("http://54.209.45.121/api/auth/register", formData, {
                 headers: {
                     "Content-Type": "application/json", 
                 }

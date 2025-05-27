@@ -28,6 +28,8 @@ export const SideBarContainer = styled.div`
 
 export const LogOutSideBar = styled(NavLink)`
     display: flex;
+    background-color: transparent;
+    border: none;
     gap: 12px;
     align-items: center;
     font-size: 16px;
@@ -35,9 +37,11 @@ export const LogOutSideBar = styled(NavLink)`
     margin-bottom: 24px;
     text-decoration: none;
     color: #21272a;
+    transition: all 100ms ease;
 
     &:hover {
         cursor: pointer;
+        transform: scale(1.02);
     }
 
     img {

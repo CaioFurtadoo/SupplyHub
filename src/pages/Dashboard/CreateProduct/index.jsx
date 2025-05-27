@@ -6,6 +6,8 @@ import { SubmitButton } from "../../../components/SubmitButton";
 import { useState } from "react";
 import { CheckboxAut } from "../../../components/CheckboxAut";
 import { SelectAut } from "../../../components/SelectAut";
+import axios from "axios"; // certifique-se de que isso está importado
+
 
 export const CreateProduct = () => {
     const navigate = useNavigate();
@@ -28,26 +30,37 @@ export const CreateProduct = () => {
         setFormData((prev) => ({ ...prev, termos: !prev.termos }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        // Formatar datas para o padrão exibido nas tabelas
-        const formattedData = {
-            ...formData,
-            status: "recebido", // Status padrão para novos produtos
-            // rec: formatDate(formData.dataRecebimento),
-            // fab: formatDate(formData.dataFabricacao),
-            // val: formatDate(formData.dataValidade),
-            tpPeso: formData.tipoPeso,
-            peso: `${formData.peso}` // Adiciona 'kg' ao peso
-        };
-        
-        console.log("Dados do produto:", formattedData);
-        // Aqui você faria a chamada para a API para criar o produto
-        // await axios.post('/api/products', formattedData);
-        
-        navigate("/produtos"); // Redireciona para a lista de recebidos
-    };
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const token = localStorage.getItem("token");
+
+  const payload = {
+    productName: formData.produto,
+    cpf: formData.recebidor,
+    receivedDate: formData.dataRecebimento,
+    fabricationDate: formData.dataFabricacao,
+    expiredDate: formData.dataValidade,
+    peso: parseFloat(formData.peso),
+    typePeso: formData.tipoPeso.toLowerCase(), // API espera lowercase
+    terms: formData.termos,
+  };
+
+  try {
+    await axios.post("http://54.209.45.121/products", payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    alert("Produto cadastrado com sucesso!");
+    navigate("/produtos"); // Redireciona para a lista de produtos
+  } catch (error) {
+    console.error("Erro ao cadastrar produto:", error);
+    alert("Erro ao cadastrar produto. Verifique os dados e tente novamente.");
+  }
+};
 
     // Função auxiliar para formatar datas
     const formatDate = (dateString) => {
@@ -78,8 +91,8 @@ export const CreateProduct = () => {
                     <Styled.CreateDoubleInputDiv>
                         <InputAut 
                             type="text" 
-                            title="Nome do recebidor" 
-                            placeholder="Digite o nome do recebidor" 
+                            title="CPF do recebidor" 
+                            placeholder="Digite o CPF do recebidor" 
                             name="recebidor" 
                             onChange={handleChange} 
                             value={formData.recebidor}

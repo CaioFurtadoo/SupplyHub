@@ -54,42 +54,40 @@ export const RecebidosPage = () => {
   const gridRef = useRef();
   const navigate = useNavigate();
   
-  // Dados de exemplo (simulando o que viria do backend)
-  const exampleProducts = [
-    { id: 1, prod: "banana", func: "João Silva", rec: "01/01/2025", fab: "01/12/2024", val: "01/06/2025", peso: "10.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 2, prod: "maçã", func: "Maria Souza", rec: "02/01/2025", fab: "15/12/2024", val: "10/06/2025", peso: "11.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 3, prod: "notebook", func: "Carlos Oliveira", rec: "03/01/2025", fab: "20/11/2024", val: "01/01/2026", peso: "2.50kg", tpPeso: "Fixo", status: "recebido" },
-    { id: 4, prod: "cadeira", func: "Ana Santos", rec: "04/01/2025", fab: "10/12/2024", val: "01/01/2030", peso: "8.00kg", tpPeso: "Fixo", status: "recebido" },
-    { id: 5, prod: "mouse", func: "Pedro Costa", rec: "05/01/2025", fab: "01/01/2025", val: "01/01/2027", peso: "0.30kg", tpPeso: "Fixo", status: "recebido" },
-    { id: 6, prod: "teclado", func: "Fernanda Lima", rec: "06/01/2025", fab: "05/01/2025", val: "01/01/2028", peso: "0.80kg", tpPeso: "Fixo", status: "recebido" },
-    { id: 7, prod: "monitor", func: "Ricardo Alves", rec: "07/01/2025", fab: "15/12/2024", val: "01/01/2029", peso: "5.50kg", tpPeso: "Fixo", status: "recebido" },
-    { id: 8, prod: "café", func: "Juliana Pereira", rec: "08/01/2025", fab: "01/12/2024", val: "01/12/2025", peso: "1.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 9, prod: "leite", func: "Marcos Rocha", rec: "09/01/2025", fab: "20/12/2024", val: "20/02/2025", peso: "1.50kg", tpPeso: "Variável", status: "recebido" },
-    { id: 10, prod: "arroz", func: "Patrícia Nunes", rec: "10/01/2025", fab: "01/11/2024", val: "01/11/2026", peso: "5.00kg", tpPeso: "Variável", status: "recebido" },
-    { id: 11, prod: "feijão", func: "Gustavo Mendes", rec: "11/01/2025", fab: "15/11/2024", val: "15/11/2026", peso: "2.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 12, prod: "óleo", func: "Camila Freitas", rec: "12/01/2025", fab: "01/10/2024", val: "01/10/2025", peso: "0.90kg", tpPeso: "Variável", status: "expedido" },
-    { id: 13, prod: "açúcar", func: "Lucas Barbosa", rec: "13/01/2025", fab: "01/09/2024", val: "01/09/2026", peso: "5.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 14, prod: "sal", func: "Amanda Castro", rec: "14/01/2025", fab: "01/08/2024", val: "01/08/2027", peso: "1.00kg", tpPeso: "Variável", status: "expedido" },
-    { id: 15, prod: "farinha", func: "Roberto Dias", rec: "15/01/2025", fab: "01/07/2024", val: "01/07/2026", peso: "2.50kg", tpPeso: "Variável", status: "expedido" },
-  ];
-
   const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(false); // Simulando que não está carregando pois usaremos dados locais
 
   // Simulando a chamada ao backend
   const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      // Em uma aplicação real, seria: const response = await axios.get('/api/products');
-      // Simulando delay de rede
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setAllData(exampleProducts);
-    } catch (error) {
-      console.error('Erro ao buscar produtos:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("http://54.209.45.121/products/received", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const receivedData = response.data.map((item, index) => ({
+      idOriginal: index+1,
+      prod: item.productName,
+      func: item.employee,
+      fab: item.fabricationDate,
+      val: item.expiredDate,
+      rec: item.receivedDate,
+      peso: `${item.peso.toFixed(2)}kg`,
+      tpPeso: item.typePeso === "fixo" ? "Fixo" : "Variável",
+      status: "recebido", // Presumimos que todos retornados são recebidos
+    }));
+
+    setAllData(receivedData);
+  } catch (error) {
+    console.error('Erro ao buscar produtos recebidos:', error);
+    alert('Erro ao carregar produtos recebidos.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchProducts();
@@ -114,33 +112,46 @@ export const RecebidosPage = () => {
   const rowHeight = 45;
 
   const handleExpedirProduto = async () => {
-    const selectedNodes = gridRef.current.api.getSelectedNodes();
-    const selectedData = selectedNodes.map((node) => node.data);
-    
-    try {
-      // Simulando chamada ao backend para cada produto selecionado
-      await Promise.all(selectedData.map(product => {
-        // Em uma aplicação real, seria: axios.put(`/api/products/${product.id}`, { status: "expedido" })
-        console.log(`Produto ${product.id} (${product.prod}) marcado como expedido`);
-        return new Promise(resolve => setTimeout(resolve, 200));
-      }));
-      
-      // Atualiza o estado local
-      setAllData(prevData => 
-        prevData.map(item =>
-          selectedData.some(selected => selected.id === item.id)
-            ? { ...item, status: "expedido" }
-            : item
-        )
-      );
-      
-      // Mostra feedback para o usuário
-      alert(`${selectedData.length} produto(s) marcado(s) como expedido(s) com sucesso!`);
-    } catch (error) {
-      console.error('Erro ao expedir produtos:', error);
-      alert('Ocorreu um erro ao expedir os produtos. Por favor, tente novamente.');
-    }
-  };
+  const selectedNodes = gridRef.current.api.getSelectedNodes();
+  const selectedData = selectedNodes.map((node) => node.data);
+
+  if (selectedData.length === 0) {
+    alert("Selecione pelo menos um produto para expedir.");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+
+    // Aqui usamos os índices da lista original (você precisará adaptar se os IDs reais vierem do backend)
+    const idsParaExpedir = selectedData.map((produto) => produto.idOriginal);
+    console.log(idsParaExpedir);
+    await axios.put(
+      "http://54.209.45.121/products/dispatch",
+      idsParaExpedir, // Envia diretamente a lista de IDs
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Atualiza localmente os produtos para status "expedido"
+    setAllData((prevData) =>
+      prevData.map((item) =>
+        selectedData.some((sel) => sel.id === item.id)
+          ? { ...item, status: "expedido" }
+          : item
+      )
+    );
+
+    alert("Produtos expedidos com sucesso!");
+  } catch (error) {
+    console.error("Erro ao expedir produtos:", error);
+    alert("Erro ao expedir os produtos. Verifique sua conexão ou tente novamente.");
+  }
+};
 
   const handleExportCSV = () => {
     gridRef.current.api.exportDataAsCsv();

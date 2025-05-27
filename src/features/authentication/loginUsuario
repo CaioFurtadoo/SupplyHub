@@ -1,0 +1,20 @@
+Funcionalidade: Login de Usuário
+  Como usuário do sistema
+  Quero fazer login com meu email e senha
+  Para acessar as funcionalidades do sistema
+
+  Cenário: Login bem-sucedido
+    Dado que estou na página de login
+    Quando preencho o email "joao@empresa.com"
+    E preencho a senha "Senha@123"
+    E clico no botão "Entrar"
+    Então devo ser redirecionado para a página inicial
+    E ver meu nome "João Silva" no cabeçalho
+
+  Cenário: Login com credenciais inválidas
+    Dado que estou na página de login
+    Quando preencho o email "joao@empresa.com"
+    E preencho a senha "senhaerrada"
+    E clico no botão "Entrar"
+    Então devo ver a mensagem "Email ou senha incorretos"
+    E permaneço na página de login

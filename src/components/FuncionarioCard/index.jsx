@@ -43,7 +43,6 @@ export const FuncionarioCard = ({ funcionario, onRemover }) => {
         <p><strong>Nome:</strong> {funcionario.username}</p>
         <p><strong>CPF:</strong> {funcionario.cpf}</p>
         <p><strong>Email:</strong> {funcionario.email}</p>
-        <p><strong>Senha:</strong> {funcionario.password}</p>
       </DivInfo>
 
       <RemoverButton onClick={() => onRemover(funcionario.id)}>
