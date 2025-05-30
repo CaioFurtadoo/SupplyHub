@@ -48,6 +48,7 @@ const handleSubmit = async (event) => {
   };
 
   try {
+    console.log(payload);
     await axios.post("http://54.209.45.121/products", payload, {
       headers: {
         Authorization: `Bearer ${token}`,

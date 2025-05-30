@@ -69,7 +69,7 @@ export const RecebidosPage = () => {
     });
 
     const receivedData = response.data.map((item, index) => ({
-      idOriginal: index+1,
+      idOriginal: item.id,
       prod: item.productName,
       func: item.employee,
       fab: item.fabricationDate,
@@ -77,10 +77,11 @@ export const RecebidosPage = () => {
       rec: item.receivedDate,
       peso: `${item.peso.toFixed(2)}kg`,
       tpPeso: item.typePeso === "fixo" ? "Fixo" : "Variável",
-      status: "recebido", // Presumimos que todos retornados são recebidos
+      status: "recebido",
     }));
 
     setAllData(receivedData);
+
   } catch (error) {
     console.error('Erro ao buscar produtos recebidos:', error);
     alert('Erro ao carregar produtos recebidos.');
@@ -123,12 +124,11 @@ export const RecebidosPage = () => {
   try {
     const token = localStorage.getItem("token");
 
-    // Aqui usamos os índices da lista original (você precisará adaptar se os IDs reais vierem do backend)
     const idsParaExpedir = selectedData.map((produto) => produto.idOriginal);
     console.log(idsParaExpedir);
     await axios.put(
       "http://54.209.45.121/products/dispatch",
-      idsParaExpedir, // Envia diretamente a lista de IDs
+      idsParaExpedir,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -147,6 +147,7 @@ export const RecebidosPage = () => {
     );
 
     alert("Produtos expedidos com sucesso!");
+    navigate("/produtos/expedidos");
   } catch (error) {
     console.error("Erro ao expedir produtos:", error);
     alert("Erro ao expedir os produtos. Verifique sua conexão ou tente novamente.");

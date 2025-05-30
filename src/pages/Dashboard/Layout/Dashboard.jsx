@@ -9,18 +9,49 @@ import products from "../../../assets/folders.svg";
 import tags from "../../../assets/tags.svg";
 import users from "../../../assets/users.svg";
 import logout from "../../../assets/logout.svg";
-import { Link } from "react-router-dom";  // corrigido aqui
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import { NavLink } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const Dashboard = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
 
+    const [recebidosCount, setRecebidosCount] = useState(0);
+    const [expedidosCount, setExpedidosCount] = useState(0);
+
     const handleLogout = () => {
-        localStorage.removeItem("token"); // remove o token
-        // opcional: poderia limpar estado de usuário aqui, se seu contexto tiver essa função
-        navigate("/"); // redireciona para login
+        localStorage.removeItem("token");
+        navigate("/");
     };
+
+    useEffect(() => {
+        const fetchCounts = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                const [recebidosRes, expedidosRes] = await Promise.all([
+                    axios.get("http://54.209.45.121/products/received", {
+                        headers: { Authorization: `Bearer ${token}` },
+                    }),
+                    axios.get("http://54.209.45.121/products/dispatched", {
+                        headers: { Authorization: `Bearer ${token}` },
+                    }),
+                ]);
+
+                setRecebidosCount(recebidosRes.data.length);
+                setExpedidosCount(expedidosRes.data.length);
+            } catch (error) {
+                console.error("Erro ao buscar contagens:", error);
+            }
+        };
+
+        fetchCounts();
+    }, []);
+    
 
     return(
         <Styled.GeneralContainer>
@@ -31,7 +62,7 @@ export const Dashboard = () => {
                         <Styled.IconsDiv>
                             <li><img src={profile} alt="profile img" /></li>
                             <li><img src={config} alt="config img" /></li>
-                            <li><Link to="/alertas"><img src={alerts} alt="alerts img" /></Link><Styled.NumberLiSideBar>9</Styled.NumberLiSideBar></li>
+                            <li><Link><img src={alerts} alt="alerts img" /></Link><Styled.NumberLiSideBar>9</Styled.NumberLiSideBar></li>
                         </Styled.IconsDiv>
                     </Styled.GeneralIconsContainer>
                     <Styled.DashboardMenu>
@@ -51,7 +82,6 @@ export const Dashboard = () => {
                         )}
                     </Styled.DashboardMenu>                    
                 </Styled.SideBarContainer>
-                {/* Botão sair com onClick */}
                 <Styled.LogOutSideBar as="button" onClick={handleLogout} type="button">
                     <img src={logout} alt="logout img" />Sair
                 </Styled.LogOutSideBar>
@@ -60,8 +90,12 @@ export const Dashboard = () => {
                 <Styled.Header>
                     <h1>Dashboard</h1>
                     <Styled.UlHeader>
-                    <Link className="link" to="produtos/expedidos"><li>Produtos Expedidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li></Link>
-                    <Link className="link" to="produtos"><li>Produtos recebidos<Styled.NumberLiHeader>2</Styled.NumberLiHeader></li></Link>
+                        <NavLink className="link" to="produtos/expedidos">
+                            <li>Produtos Expedidos<Styled.NumberLiHeader>{expedidosCount}</Styled.NumberLiHeader></li>
+                        </NavLink>
+                        <NavLink className="link" to="produtos" end>
+                            <li>Produtos recebidos<Styled.NumberLiHeader>{recebidosCount}</Styled.NumberLiHeader></li>
+                        </NavLink>
                         <li>Alertas</li>
                         <li><img src={dots} alt="" /></li>
                     </Styled.UlHeader>
