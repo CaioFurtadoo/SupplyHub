@@ -42,6 +42,17 @@ git clone https://github.com/CaioFurtadoo/SupplyHub.git
 - Link do back-end (rodar a branch 'back'): https://github.com/jamillalobo/back-supplyhub/tree/feat/back
 - Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
 
+## Entrega 4
+- Link do screencast do front-end integrado:
+- Link do screencast dos testes:
+- Link do diagrama de classes: https://drive.google.com/file/d/11ZVm8GIpT7hBT92Or0zDX53AnfT9N48x/view?usp=sharing
+- Link user stories: https://github.com/users/LuisFacunde/projects/1
+- Link do back-end (rodar a branch 'back'): https://github.com/jamillalobo/back-supplyhub/tree/feat/back
+- Link do deploy do backend: http://54.209.45.121/swagger-ui/index.html#/
+- Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
+
+- Para rodar o projeto so é necessario clonar o repósitorio do front e rodar com npm run dev no terminal visto que o backend ja possui o deploy que ja esta integrado!! lembrando que para cadastrar produto você deve ser um funcionario.
+
 ## Autores
 - Arthur Tavares Porto
 - Caio Furtado de Miranda Carvalho
