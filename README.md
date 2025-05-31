@@ -43,8 +43,8 @@ git clone https://github.com/CaioFurtadoo/SupplyHub.git
 - Link dos log trackers: https://drive.google.com/drive/folders/18BUcdpxpvCjsHbENt7K6asfZsgIOjCQl?usp=sharing
 
 ## Entrega 4
-- Link do screencast do front-end integrado:
-- Link do screencast dos testes:
+- Link do screencast do front-end integrado: https://www.youtube.com/watch?v=cWfH76L0Zio
+- Link do screencast dos testes: https://www.youtube.com/watch?v=4xmOtzDKQUU
 - Link do diagrama de classes: https://drive.google.com/file/d/11ZVm8GIpT7hBT92Or0zDX53AnfT9N48x/view?usp=sharing
 - Link user stories: https://github.com/users/LuisFacunde/projects/1
 - Link do back-end (rodar a branch 'back'): https://github.com/jamillalobo/back-supplyhub/tree/feat/back
