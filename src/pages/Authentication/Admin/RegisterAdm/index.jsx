@@ -37,13 +37,13 @@ export const RegisterAdm = () => {
 
     return (
         <Styled.AutDiv>
-            <Styled.TituloAut>Cadastro</Styled.TituloAut>
+            <Styled.TituloAut>Cadastro Gestor</Styled.TituloAut>
             <Styled.AutForm onSubmit={handleSubmit}>
                 <Styled.DoubleInputDiv>
                     <InputAut
                         type="text"
-                        title="Nome de usuário"
-                        placeholder="Digite seu nome de usuário"
+                        title="Nome"
+                        placeholder="Digite seu Nome"
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
